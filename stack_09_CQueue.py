@@ -64,4 +64,9 @@ class CQueue:
 
 
 if __name__ == "__main__":
-    pass
+    cq = CQueue()
+    cq.appendTail(5)
+    cq.appendTail(6)
+    cq.appendTail(7)
+    paramsCQ = cq.deleteHead()
+    print(paramsCQ)
