@@ -67,6 +67,7 @@ class MaxQueue(object):
 # param_3 = obj.pop_front()
 
 
+
 if __name__ == "__main__":
     '''
     ["MaxQueue","push_back","push_back","max_value","pop_front","max_value"]
