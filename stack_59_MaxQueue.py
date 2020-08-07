@@ -36,6 +36,7 @@ class MaxQueue(object):
         """
         :rtype: int
         """
+        # 返回这个序列的头部【0】 就可以
         return self.queueA[0] if self.queueA else -1
 
     def push_back(self, value):
@@ -43,8 +44,11 @@ class MaxQueue(object):
         :type value: int
         :rtype: None
         """
+        # 当放入的数比queueA 头部大就从头部取出数，指导留下比新的数更大的数
+        # 这样数列就是递减的（【-1】是尾部最大 【0】是头部最小）
         while self.queueA and self.queueA[-1] < value:
             self.queueA.pop()
+        # 新的数字放入
         self.queueA.append(value)
         self.queueB.append(value)
 
@@ -54,7 +58,10 @@ class MaxQueue(object):
         """
         if not self.queueA:
             return -1
+        # 取出最大的【-1】尾部
         ans = self.queueB.pop(0)
+        # 容易错
+        # 如果取出的值是维护队列queueA中最小的，也取出
         if ans == self.queueA[0]:
             self.queueA.pop(0)
         return ans
