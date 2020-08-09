@@ -92,6 +92,11 @@ class HeapList():
             else:
                 return 2 * i + 1
 
+class Solution1:
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        arr.sort()
+        return arr[:k]
+
 
 if __name__ == "__main__":
     sl = Solution()
