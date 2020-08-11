@@ -26,13 +26,6 @@ pd.set_option('max_colwidth', 200)
 pd.set_option('display.width', 5000)
 
 
-def func():
-    pass
-
-
-class Main:
-    def __init__(self):
-        pass
 
 
 if __name__ == "__main__":
