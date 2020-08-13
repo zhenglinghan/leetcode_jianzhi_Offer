@@ -110,7 +110,7 @@ def PrintTree(pRoot):
     :param pRoot:
     :return:
     '''
-    # write code here
+    # 循环操作一般都要用到stack
     if pRoot is None:
         return []
     if pRoot.left is None and pRoot.right is None:
