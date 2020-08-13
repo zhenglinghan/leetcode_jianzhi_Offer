@@ -67,7 +67,7 @@ class Solution_treeMatch(object):
     def isSubStructure(self, A, B):
 
         if not A or not B: return False
-        return self.check(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B)
+        return self.dfs(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B)
 
 
 if __name__ == "__main__":
