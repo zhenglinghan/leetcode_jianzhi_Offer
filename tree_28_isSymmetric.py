@@ -44,6 +44,10 @@ class Solution(object):
 
         return recur(root.left, root.right) if root else True
 
+'''
+对比子树结构的问题
+
+'''
 
 if __name__ == "__main__":
     pass
