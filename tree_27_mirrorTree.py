@@ -57,7 +57,7 @@ class Solution(object):
         '''
         if not root:
             return
-        stack = [root]# 辅助队列记录下下一层的根 常见的树遍历方式
+        stack = [root]# 辅助队列记录下下一层的根 常见的树遍历方式 直到叶子节点 没有根
         while stack:
             node = stack.pop()# 子树的根
             if node.left:
