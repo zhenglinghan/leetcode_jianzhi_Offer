@@ -64,4 +64,31 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    pass
+    root = TreeNode(5)
+    root.left = TreeNode(4)
+    root.right = TreeNode(2)
+    root.left.left = TreeNode(-1)
+    root.left.right = TreeNode(9)
+    root.left.left.left = TreeNode(0)
+    root.right.left = TreeNode(5.1)
+    root.right.right = TreeNode(5.2)
+
+    res = []
+
+    # 递归解法BFS
+    def helper(root, level):
+        if not root:
+            return
+        if level == len(res):
+            res.append([])
+
+        res[level].append(root.val)
+        helper(root.left, level + 1)
+        helper(root.right, level + 1)
+
+    helper(root, 0)
+    print(res)
+
+    # 非递归
+    sl = Solution()
+    print(sl.levelOrder(root))
