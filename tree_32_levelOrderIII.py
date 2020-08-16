@@ -54,6 +54,9 @@ class Solution(object):
         self.bfs(root, 0)
         return self.res
 
+    '''
+        非递归
+    '''
     def bfs(self, root, level):
         if not root:
             return
