@@ -61,7 +61,8 @@ class TreeNode(object):
 class Codec:
 
     def serialize(self, root):
-        if not root: return "[]"
+        if not root:
+            return "[]"
         queue = []
         queue.append(root)
         res = []
