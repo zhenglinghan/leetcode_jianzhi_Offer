@@ -135,6 +135,7 @@ def PrintTree(pRoot):
         output.append(temp)
     return output
 
+
 # 3种递归遍历树的方式
 def preorderTraversal(root):
     """
@@ -143,7 +144,8 @@ def preorderTraversal(root):
     """
     if not root:
         return []
-    return [root.val] + inorderTraversal(root.left) + inorderTraversal(root.right)
+    return [root.val] + preorderTraversal(root.left) + preorderTraversal(root.right)
+
 
 def inorderTraversal(root):
     """
@@ -154,6 +156,7 @@ def inorderTraversal(root):
         return []
     return inorderTraversal(root.left) + [root.val] + inorderTraversal(root.right)
 
+
 def lastorderTraversal(root):
     """
     :type root: TreeNode
@@ -161,7 +164,22 @@ def lastorderTraversal(root):
     """
     if not root:
         return []
-    return inorderTraversal(root.left) + inorderTraversal(root.right) +[root.val]
+    return lastorderTraversal(root.left) + lastorderTraversal(root.right) + [root.val]
+
+
+def LevelOrder(node):
+    if node == None:
+        return
+    stack = []
+    stack.append(node)
+    while stack != []:
+        node = stack.pop(0)
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+        print(node.val)
+
 
 if __name__ == "__main__":
     sl = Solution_tree_built()
@@ -169,3 +187,4 @@ if __name__ == "__main__":
     b = list('DBGEHACF')
     ansTree = sl.buildTree_pre_in(a, b)
     print(PrintTree(ansTree))
+    LevelOrder(ansTree)
