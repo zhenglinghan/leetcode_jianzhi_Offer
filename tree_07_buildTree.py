@@ -69,39 +69,38 @@ def postorderTraversal(root):
 
 def bin_tree_pre_order_traverse1(root):
     '''
-    利用两个栈实现
+    利用1个栈实现
     '''
+    res = []
     s1 = []
-    s2 = []
     s1.append(root)
     while s1:
-        node = s1.pop()
-        s2.append(node)
-        if node.left:
-            s1.append(node.left)
+        node = s1.pop()# 对于s1中每个要被访问的跟节点
+        res.append(node.val)# 先访问它本身（根）
+        # 压栈 右，左->下次循环时出栈 左 右，符合前序遍历
         if node.right:
             s1.append(node.right)
-    while s2:
-        print(s2.pop().value)
-
+        if node.left:
+            s1.append(node.left)
+    return res
 
 def bin_tree_in_order_traverse1(root):
     '''
-    利用两个栈实现
+    利用1个栈实现
     '''
+    res = []
     s1 = []
-    s2 = []
-    s1.append(root)
-    while s1:
-        node = s1.pop()
-        s2.append(node)
-        if node.left:
-            s1.append(node.left)
-        if node.right:
-            s1.append(node.right)
-    while s2:
-        print(s2.pop().value)
-
+    node = root# 根节点先不入栈 需要找到最左的节点
+    while node or s1:
+        if node:
+            s1.append(node)
+            node = node.left# 向左不停找
+        else:
+            # node 为空，走到叶子节点了
+            node = s1.pop()# 左边节点的根（最左节点）
+            res.append(node.val)# 入栈
+            node = node.right
+    return res
 
 def bin_tree_post_order_traverse1(root):
     '''
@@ -110,15 +109,17 @@ def bin_tree_post_order_traverse1(root):
     s1 = []
     s2 = []
     s1.append(root)
+    res = []
     while s1:
         node = s1.pop()
-        s2.append(node)
+        s2.append(node)# 中进栈 右进栈 左进栈
         if node.left:
             s1.append(node.left)
         if node.right:
             s1.append(node.right)
-    while s2:
-        print(s2.pop().value)
+    while s2:# 反过来 左出，右出，中出
+        res.append(s2.pop().val)
+    return res
 
 
 class Solution(object):
@@ -280,8 +281,12 @@ if __name__ == "__main__":
     ansTree = sl.buildTree_pre_in(a, b)
     print(PrintTree(ansTree))
     print(PrintTree_null(ansTree))
-    print(postorderTraversal(ansTree))
     ansTree = sl.buildTree_in_post(b, c)
+    print(preorderTraversal(ansTree))
+    print(inorderTraversal(ansTree))
     print(postorderTraversal(ansTree))
+    print(bin_tree_pre_order_traverse1(ansTree))
+    print(bin_tree_in_order_traverse1(ansTree))
+    print(bin_tree_post_order_traverse1(ansTree))
     # print(PrintTree(ansTree))
     # LevelOrder(ansTree)
