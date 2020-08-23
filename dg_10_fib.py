@@ -26,10 +26,24 @@ pd.set_option('max_colwidth', 200)
 pd.set_option('display.width', 5000)
 
 class Solution:
-    def fib(self, n: int) -> int:
-        if (n < 2):
-            return n
-        return self.fib(n - 1) + self.fib(n - 2)
+    # 递归
+    # def fib(self, n):
+    #     if (n < 2):
+    #         return n
+    #     return (self.fib(n - 1) + self.fib(n - 2))%1000000007 # 防止越界
+    # def fib(self, n):
+    #     records = [-1 for i in range(n+1)] # 记录计算的值
+    #     if n == 0:return 0
+    #     if n == 1:return 1
+    #     if records[n] == -1: # 表明这个值没有算过
+    #         records[n] = (self.fib(n-1) +self.fib(n-2))%1000000007
+    #     return records[n]
+    # 动态规划
+    def fib(self, n):
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, a + b
+        return a % 1000000007
 
 if __name__ == "__main__":
     pass 
