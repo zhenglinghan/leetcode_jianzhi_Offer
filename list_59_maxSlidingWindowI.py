@@ -27,6 +27,9 @@ pd.set_option('display.width', 5000)
 
 
 class Solution:
+    '''
+    先进先出队列 处理好起始，终止
+    '''
     def maxSlidingWindow(self, nums, k):
         if not nums:
             return []
