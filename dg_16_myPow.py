@@ -32,11 +32,11 @@ class Solution:
         if n == 0:
             return 1
         if n < 0:
-            return (1 / x) * self.myPow(1 / x, -1 * n - 1)
+            return self.myPow1(1 / x, -1 * n)
         if n % 2 == 0:
-            return self.myPow(x * x, n // 2)
+            return self.myPow1(x * x, n // 2)
         else:
-            return x * self.myPow(x * x, n // 2)
+            return x * self.myPow1(x * x, n // 2)
 
     # 二进制 位运算法！
     def myPow2(self, x, n):
@@ -56,6 +56,6 @@ class Solution:
 if __name__ == "__main__":
     s = Solution()
     x = 2
-    n = 10
-    ans = s.myPow2(x, n)
+    n = -9
+    ans = s.myPow1(x, n)
     print(ans)

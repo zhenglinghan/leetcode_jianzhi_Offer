@@ -65,6 +65,21 @@ class Solution:
             res += 1
         return res
 
+    def maxDepth_BFS2(self, root):
+        if not root:
+            return 0
+        queue = [root]
+        res = 0
+        while queue:
+            for index in range(len(queue)):
+                nodei = queue.pop(0)
+                if nodei.left:
+                    queue.append(nodei.left)
+                if nodei.right:
+                    queue.append(nodei.right)
+            res += 1
+        return res
+
 
 '''
 特例处理： 当 root​ 为空，直接返回 深度 00 。
@@ -84,8 +99,13 @@ if __name__ == "__main__":
     root.left.left = TreeNode(-1)
     root.left.right = TreeNode(9)
     root.left.left.left = TreeNode(0)
+    root.left.left.left.right = TreeNode(9)
+    root.left.left.left.right.left = TreeNode(10)
     root.right.left = TreeNode(5.1)
     root.right.right = TreeNode(5.2)
-
+    root.right.right.right = TreeNode(10.2)
+    root.right.right.right.left = TreeNode(10.9)
     s = Solution()
     print(s.maxDepth_DFS(root))
+    print(s.maxDepth_BFS(root))
+    print(s.maxDepth_BFS2(root))
