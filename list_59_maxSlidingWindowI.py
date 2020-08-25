@@ -25,12 +25,15 @@ pd.set_option('display.float_format', lambda x: '%.5f' % x)
 pd.set_option('max_colwidth', 200)
 pd.set_option('display.width', 5000)
 
+import collections
+
 
 class Solution:
     '''
     先进先出队列 处理好起始，终止
     '''
-    def maxSlidingWindow(self, nums, k):
+
+    def maxSlidingWindow1(self, nums, k):
         if not nums:
             return []
         res = [max(nums[:k])]
@@ -39,7 +42,7 @@ class Solution:
             res.append(max(nums[:k]))
         return res
 
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    def maxSlidingWindow2(self, nums, k):
         deque = collections.deque()
         res, n = [], len(nums)
         for i, j in zip(range(1 - k, n + 1 - k), range(n)):
@@ -51,9 +54,11 @@ class Solution:
             if i >= 0:
                 res.append(deque[0])  # 记录窗口最大值
         return res
+
+
 if __name__ == "__main__":
     s = Solution()
     nums = [1, 3, -1, -3, 5, 3, 6, 7]
     k = 3
-    ans = s.maxSlidingWindow(nums, k)
+    ans = s.maxSlidingWindow2(nums, k)
     print(ans)
