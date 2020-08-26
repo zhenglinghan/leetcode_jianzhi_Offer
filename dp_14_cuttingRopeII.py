@@ -30,12 +30,38 @@ class Solution:
     def cuttingRope(self, n: int) -> int:
         dp = [0 for _ in range(n + 1)]  # dp[0] dp[1]其实没用
         dp[2] = 1  # 初始化
-        res = -1
         for i in range(3, n + 1):
             for j in range(i):
                 dp[i] = max(dp[i], max((i - j) * j, j * dp[i - j]))
         return dp[n] % 1000000007
 
+    def remainder1(self, x, a, p):
+        '''
+        循环取余法 保证每轮中间值 rem 都在 int32 取值范围中
+        :param x: x^a
+        :param a: a次幂 a>0
+        :param p: 对p取余
+        :return:
+        '''
+        rem = 1
+        for _ in range(a):
+            rem = (rem * x) % p
+        return rem
 
+    # 求 (x^a) % p —— 快速幂求余
+    def remainder2(self, x, a, p):
+        rem = 1
+        while a > 0:
+            if a % 2:
+                rem = (rem * x) % p
+            x = x ** 2 % p
+            a //= 2
+        return rem
+'''
+此题与 面试题14- I. 剪绳子 主体等价，唯一不同在于本题目涉及 “大数越界情况下的求余问题” 。
+建议先做上一道题，在此基础上再研究此题目的大数求余方法。
+
+
+'''
 if __name__ == "__main__":
     pass
