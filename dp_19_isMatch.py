@@ -52,4 +52,8 @@ class Solution:
         return dp[m][n]
 
 if __name__ == "__main__":
-    pass 
+    a=''
+    b='*'
+    s = Solution()
+    ans = s.isMatch(a,b)
+    print(ans)
