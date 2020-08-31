@@ -29,7 +29,7 @@ pd.set_option('display.width', 5000)
 class Solution:
     def binary_search(self, matrix, target, start, vertical):
         lo = start
-        hi = len(matrix) - 1 if vertical else len(matrix[0]) - 1 # 垂直搜索：hi = 行数 - 1
+        hi = len(matrix) - 1 if vertical else len(matrix[0]) - 1  # 垂直搜索：hi = 行数 - 1
 
         while lo <= hi:
             mid = (lo + hi) // 2
@@ -40,7 +40,7 @@ class Solution:
                     hi = mid - 1
                 else:
                     return True
-            else:   # 水平搜索
+            else:  # 水平搜索
                 if matrix[start][mid] < target:
                     lo = mid + 1
                 elif matrix[start][mid] > target:
@@ -51,11 +51,15 @@ class Solution:
         return False
 
     def findNumberIn2DArray(self, matrix, target):
-        if not matrix: return False   # 边界条件
+        if not matrix: return False  # 边界条件
 
         for i in range(min(len(matrix), len(matrix[0]))):
-            vertical_found = self.binary_search(matrix, target, i, True) # 垂直方向是否找到
-            horizontal_found = self.binary_search(matrix, target, i, False) # 水平是否找到
+            # 从短边开始
+            # start 为起始点
+            # 列上搜索
+            vertical_found = self.binary_search(matrix, target, i, True)  # 垂直方向是否找到
+            # 行上搜索
+            horizontal_found = self.binary_search(matrix, target, i, False)  # 水平是否找到
             if vertical_found or horizontal_found:  # 任一方向找到即可
                 return True
 
@@ -63,4 +67,9 @@ class Solution:
 
 
 if __name__ == "__main__":
-    pass 
+    M = [[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30],
+         [4, 7, 10, 17, 23]]
+    T = 5
+    s = Solution()
+    ans = s.findNumberIn2DArray(M, T)
+    print(ans)
