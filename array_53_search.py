@@ -60,6 +60,9 @@ class Solution:
         left = j
         return right - left - 1
     # 二次二分！
+    '''
+    重点关注二分查找的终止 right left
+    '''
     def search2(self, nums: [int], target: int) -> int:
         # 搜索右边界 right
         i, j = 0, len(nums) - 1
