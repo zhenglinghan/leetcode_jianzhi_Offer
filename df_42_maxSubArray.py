@@ -40,6 +40,18 @@ class Solution:
                 dp[i] = max([dp[i], sum(nums[j:i+1])])
         return max(dp)
 
+    def maxSubArray_self(self, nums):
+        '''
+        暴力法
+        :param nums:
+        :return:
+        '''
+        dp = [-100 for _ in range(len(nums))]
+        dp[0] = nums[0]  # 初始化
+        for i in range(1, len(nums)):
+            dp[i] = dp[i-1]+max(nums[i-1],0)
+        return dp[-1]
+
     def maxSubArray(self, nums):
         '''
         f(n+1) 只与 f(n) 与 nums[n+1]有关
@@ -63,4 +75,7 @@ class Solution:
 返回值： 返回 dp 列表中的最大值，代表全局最大值
 '''
 if __name__ == "__main__":
-    pass 
+    nums = [-2,1,-3,4,-1,2,1,-5,4]
+    s = Solution()
+    ans = s.maxSubArray(nums)
+    print(ans)

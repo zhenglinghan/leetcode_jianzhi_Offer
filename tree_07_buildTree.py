@@ -290,3 +290,18 @@ if __name__ == "__main__":
     print(bin_tree_post_order_traverse1(ansTree))
     # print(PrintTree(ansTree))
     # LevelOrder(ansTree)
+
+    def buildTree_pre_in(self, preorder, inorder):
+        """
+        前序 中序恢复整颗树
+        :param preorder:
+        :param inorder:
+        :return:
+        """
+        if not preorder:
+            return None
+        root = TreeNode(preorder.pop(0))
+        indexroot = inorder.index(root.val)
+        root.left = self.buildTree_pre_in(preorder, inorder[:indexroot])
+        root.right = self.buildTree_pre_in(preorder, inorder[indexroot + 1:])
+        return root
