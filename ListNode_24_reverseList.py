@@ -80,9 +80,9 @@ class Solution:
         '''
         if head==None or head.next ==None:
             return head
-        ret = self.reverseList_2(head.next)
-        head.next.next = head
-        head.next=None
+        ret = self.reverseList_2(head.next)# 记为head!递归中的固定搜索值返回！
+        head.next.next = head# 当前节点的下一个节点的next指针指向当前节点(head = 当前节点)
+        head.next=None# 当前节点指向空 当前节点不断返回 通过条件1：head==None!
         return ret
 
 
