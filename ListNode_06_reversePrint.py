@@ -42,4 +42,14 @@ class Solution:
         return self.reversePrint(head.next) + [head.val] if head else []
 
 if __name__ == "__main__":
-    pass 
+    # 链表遍历
+    a = ListNode(1)
+    b = ListNode(2)
+    c = ListNode(3)
+    a.next = b
+    b.next = c
+    c.next = None
+    cur = a
+    while cur:
+        print(cur.val)
+        cur = cur.next
