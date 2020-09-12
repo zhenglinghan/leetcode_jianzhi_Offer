@@ -27,6 +27,8 @@ pd.set_option('display.width', 5000)
 
 
 class Solution:
+    # 考察利用进制，生成10进制数 以及越界问题
+    # 2147483647 不记得可以2**31-1 实验一下
     def strToInt(self, str):
         res, i, sign, length = 0, 0, 1, len(str)  # 结果数字 索引 符号 长度
         int_max, int_min, bndry = 2 ** 31 - 1, -2 ** 31, 2 ** 31 // 10# bndry是214748364
@@ -61,7 +63,9 @@ class Solution:
         for c in str[i:]:
             if not '0' <= c <= '9':
                 break# 异常！直接返回
-            if res > bndry or (res == bndry and c > '7'):# 优先级 and 高 其实不用括号
+            if res > bndry or (res == bndry and c > '7'):
+                # 前9位只要>214748364 必然越界
+                # 优先级 and 高 其实不用括号
                 # 越界
                 return int_max if sign == 1 else int_min
             # ord() 函数是 chr() 函数的配对函数 返回一个字符的ascii码
