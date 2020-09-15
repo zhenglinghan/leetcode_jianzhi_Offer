@@ -45,4 +45,13 @@ class Solution:
 
 
 if __name__ == "__main__":
-    pass 
+    '''
+    总体规律
+    now = 1
+    for i in [10,100,1000,10000,100000]:   
+        dig = np.log10(i)
+        if i>10:
+            now = now*10+10**(dig-1)
+        print(i,now)
+    要判断位数是否等于1
+    '''
