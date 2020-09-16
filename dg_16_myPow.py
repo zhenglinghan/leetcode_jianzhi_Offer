@@ -54,14 +54,6 @@ class Solution:
 
 class Solution2:
     def myPow(self, x: float, n: int) -> float:
-        def pow_unsigned1(base, exp):
-            ans = 1.0
-            while exp > 0:
-                if exp & 1:
-                    ans = ans * base
-                exp >>= 1
-                base = base * base
-            return ans
         def pow_unsigned(base, exp):
             # 先转化为二进制再计算，比较容易理解。 x**9 = x*(1001) = x**(1*2^0) * x**(0*2^1) * x**(0*2^2) * x**(1*2^3)
             binary = [int(n) for n in bin(exp)[2:]]# 二进制
@@ -84,4 +76,9 @@ if __name__ == "__main__":
     x = 2
     n = -9
     ans = s.myPow1(x, n)
+    print(ans)
+    s = Solution2()
+    x = 2
+    n = -9
+    ans = s.myPow(x, n)
     print(ans)
