@@ -28,7 +28,8 @@ pd.set_option('display.width', 5000)
 
 class Solution:
     '''
-    wc 双指针 保证i左边都是奇数 i右边都是偶数 这种前后顺序的题可以考虑双指针
+    wc 双指针 保证i左边都是奇数 i右边都是偶数
+    这种前后顺序的题可以考虑双指针
     '''
     def exchange(self, nums):
         i, j = 0, len(nums) - 1
