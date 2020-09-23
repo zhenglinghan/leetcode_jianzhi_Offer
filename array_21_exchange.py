@@ -30,7 +30,9 @@ class Solution:
     '''
     wc 双指针 保证i左边都是奇数 i右边都是偶数
     这种前后顺序的题可以考虑双指针
+    超时了。。
     '''
+
     def exchange(self, nums):
         i, j = 0, len(nums) - 1
         while i <= j:
@@ -40,6 +42,20 @@ class Solution:
                 j -= 1
             nums[i], nums[j] = nums[j], nums[i]
         return nums
+
+
+import collections
+
+
+class Solution:
+    '''
+    双队列
+    '''
+    def exchange(self, nums):
+        tmp = collections.deque()
+        for num in nums:
+            tmp.appendleft(num) if num % 2 == 1 else tmp.append(num)
+        return list(tmp)
 
 
 if __name__ == "__main__":

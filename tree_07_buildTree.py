@@ -64,7 +64,7 @@ def postorderTraversal(root):
     return postorderTraversal(root.left) + postorderTraversal(root.right) + [root.val]
 
 
-# 3种非递归遍历树的方式
+# 3种非递归遍历树的方式 迭代
 # 需要用到两个栈
 
 def bin_tree_pre_order_traverse1(root):
@@ -75,8 +75,8 @@ def bin_tree_pre_order_traverse1(root):
     s1 = []
     s1.append(root)
     while s1:
-        node = s1.pop()# 对于s1中每个要被访问的跟节点
-        res.append(node.val)# 先访问它本身（根）
+        node = s1.pop()  # 对于s1中每个要被访问的跟节点
+        res.append(node.val)  # 先访问它本身（根）
         # 压栈 右，左->下次循环时出栈 左 右，符合前序遍历
         if node.right:
             s1.append(node.right)
@@ -84,23 +84,25 @@ def bin_tree_pre_order_traverse1(root):
             s1.append(node.left)
     return res
 
+
 def bin_tree_in_order_traverse1(root):
     '''
     利用1个栈实现
     '''
     res = []
     s1 = []
-    node = root# 根节点先不入栈 需要找到最左的节点
+    node = root  # 根节点先不入栈 需要找到最左的节点
     while node or s1:
         if node:
             s1.append(node)
-            node = node.left# 向左不停找
+            node = node.left  # 向左不停找
         else:
             # node 为空，走到叶子节点了
-            node = s1.pop()# 左边节点的根（最左节点）
-            res.append(node.val)# 入栈
+            node = s1.pop()  # 左边节点的根（最左节点）
+            res.append(node.val)  # 入栈
             node = node.right
     return res
+
 
 def bin_tree_post_order_traverse1(root):
     '''
@@ -112,12 +114,12 @@ def bin_tree_post_order_traverse1(root):
     res = []
     while s1:
         node = s1.pop()
-        s2.append(node)# 中进栈 右进栈 左进栈
+        s2.append(node)  # 中进栈 右进栈 左进栈
         if node.left:
             s1.append(node.left)
         if node.right:
             s1.append(node.right)
-    while s2:# 反过来 左出，右出，中出
+    while s2:  # 反过来 左出，右出，中出
         res.append(s2.pop().val)
     return res
 
@@ -273,6 +275,41 @@ def LevelOrder(node):
         print(node.val)
 
 
+# 利用前中后序遍历 合并二叉树
+
+class Solution:
+    def mergeTrees0(self, t1, t2):
+        if t1 == None:
+            return t2  # 如果t1为空，合并之后就应该是t2
+        if t2 == None:
+            return t1  # 如果t2为空，合并之后就应该是t1
+        t1.val += t2.val  # 都不为空 中
+        t1.left = self.mergeTrees0(t1.left, t2.left)  # 左
+        t1.right = self.mergeTrees0(t1.right, t2.right)  # 右
+        return t1  # 在t1上 改
+
+    def mergeTrees1(self, t1, t2):
+        if t1 == None:
+            return t2  # 如果t1为空，合并之后就应该是t2
+        if t2 == None:
+            return t1  # 如果t2为空，合并之后就应该是t1
+        t1.left = self.mergeTrees1(t1.left, t2.left)  # 左
+        t1.val += t2.val  # 都不为空 中
+        t1.right = self.mergeTrees1(t1.right, t2.right)  # 右
+        return t1  # 在t1上 改
+
+    def mergeTrees2(self, t1, t2):
+        if t1 == None:
+            return t2  # 如果t1为空，合并之后就应该是t2
+        if t2 == None:
+            return t1  # 如果t2为空，合并之后就应该是t1
+        t1.left = self.mergeTrees2(t1.left, t2.left)  # 左
+        t1.right = self.mergeTrees2(t1.right, t2.right)  # 右
+        t1.val += t2.val  # 都不为空 中
+        return t1  # 在t1上 改
+
+
+
 if __name__ == "__main__":
     sl = Solution_tree_built()
     a = list('ABDEGHCF')
@@ -288,6 +325,8 @@ if __name__ == "__main__":
     print(bin_tree_pre_order_traverse1(ansTree))
     print(bin_tree_in_order_traverse1(ansTree))
     print(bin_tree_post_order_traverse1(ansTree))
+
+
     # print(PrintTree(ansTree))
     # LevelOrder(ansTree)
 
