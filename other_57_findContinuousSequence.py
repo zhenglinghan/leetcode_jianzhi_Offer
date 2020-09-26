@@ -34,10 +34,11 @@ class Solution:
     和不足target 必然需要右边界右移
     直到左边界> target//2
     '''
+
     def findContinuousSequence(self, target):
-        i = 1 # 滑动窗口的左边界
-        j = 1 # 滑动窗口的右边界
-        sumi = 0 # 滑动窗口中数字的和
+        i = 1  # 滑动窗口的左边界
+        j = 1  # 滑动窗口的右边界
+        sumi = 0  # 滑动窗口中数字的和
         res = []
 
         while i <= target // 2:
@@ -45,7 +46,7 @@ class Solution:
                 # 右边界向右移动
                 sumi += j
                 j += 1
-                if j==target//2+3:
+                if j == target // 2 + 3:
                     break
             elif sumi > target:
                 # 左边界向右移动
@@ -63,4 +64,4 @@ class Solution:
 
 
 if __name__ == "__main__":
-    pass 
+    pass
