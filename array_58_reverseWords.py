@@ -66,4 +66,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    pass
+    s = "  hello         world!  "
+    Sl = Solution()
+    ans = Sl.reverseWords2(s)
+    print(ans)
