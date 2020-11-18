@@ -33,7 +33,9 @@ class TreeNode(object):
         self.right = None
 
 
-# 3种递归遍历树的方式
+'''
+3种递归遍历树的方式
+'''
 def preorderTraversal(root):
     """
     :type root: TreeNode
@@ -64,8 +66,10 @@ def postorderTraversal(root):
     return postorderTraversal(root.left) + postorderTraversal(root.right) + [root.val]
 
 
-# 3种非递归遍历树的方式 迭代
-# 需要用到两个栈
+'''
+3种非递归遍历树的方式 迭代
+需要用到栈
+'''
 
 def bin_tree_pre_order_traverse1(root):
     '''
@@ -114,7 +118,7 @@ def bin_tree_post_order_traverse1(root):
     res = []
     while s1:
         node = s1.pop()
-        s2.append(node)  # 中进栈 右进栈 左进栈
+        s2.append(node)  # 中进栈 右进栈 左进栈 对比先序遍历，不打印，放入s2 后面全部反过来
         if node.left:
             s1.append(node.left)
         if node.right:

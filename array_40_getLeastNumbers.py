@@ -25,6 +25,28 @@ pd.set_option('display.float_format', lambda x: '%.5f' % x)
 pd.set_option('max_colwidth', 200)
 pd.set_option('display.width', 5000)
 
+import heapq# 小顶堆
+
+class Solution0:
+    def getLeastNumbers(self, arr, k):
+        if k == 0:
+            return list()
+
+        hp = [-x for x in arr[:k]]
+        heapq.heapify(hp)
+        for i in range(k, len(arr)):
+            if -hp[0] > arr[i]:# hp[0] 最小 取反为最大 最大大于当前
+                heapq.heappop(hp)# hp 里剔除最小 去掉了当前最大
+                heapq.heappush(hp, -arr[i])# 加入一个比当前最大小的
+        ans = [-x for x in hp]
+        return ans
+
+
+a = [0, 1, 9, 5, 2, 10, 2, 3, 4]
+S = Solution0()
+ans = S.getLeastNumbers(a, 4)
+print(ans)
+
 
 class Solution:
     def getLeastNumbers(self, arr, k):
@@ -92,6 +114,7 @@ class HeapList():
             else:
                 return 2 * i + 1
 
+
 class Solution1:
     def getLeastNumbers(self, arr, k: int):
         arr.sort()
@@ -142,15 +165,17 @@ class Solution3:
     def getLeastNumbers(self, arr, k):
         arr = self.qsort(arr)
         return arr[:k]
+
     def qsort(self, arr):
         if not len(arr):
             return []
         else:
-        # 在这里以第一个元素为基准线
+            # 在这里以第一个元素为基准线
             pivot = arr[0]
             left = self.qsort([x for x in arr[1:] if x < pivot])
             right = self.qsort([x for x in arr[1:] if x >= pivot])
-        return left+[pivot]+right
+        return left + [pivot] + right
+
 
 class Solution4:
     def getLeastNumbers(self, arr, k):
@@ -270,6 +295,8 @@ class Solution4:
         li[low] = pivot  # 基准值放如list中间位置
         # 返回的是索引位置 单list顺序已经被分为了左队列 基准值 右队列
         return low
+
+
 if __name__ == "__main__":
     sl = Solution()
     ans = sl.getLeastNumbers([1, 4, 5, 1, 3, 5, 2], 3)

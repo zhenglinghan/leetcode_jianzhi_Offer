@@ -43,16 +43,17 @@ class Solution:
     '''
     索引查重 原地交换
     '''
-    def findRepeatNumber(self, nums):
+
+    def findRepeatNumber_index(self, nums):
         i = 0
-        while i<len(nums):
-            if nums[i]==i:
-                i+=1
+        while i < len(nums):
+            if nums[i] == i:
+                i += 1
                 continue
-            if nums[nums[i]]==nums[i]:
+            if nums[nums[i]] == nums[i]:
                 return nums[i]
-            else:
-                nums[nums[i]],nums[i] = nums[i],nums[nums[i]]
+            nums[nums[i]], nums[i] = nums[i], nums[nums[i]]
+        return -1
 
 if __name__ == "__main__":
     pass 

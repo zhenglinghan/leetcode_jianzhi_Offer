@@ -58,12 +58,15 @@ class Solution:
         :param s:
         :return:
         '''
+        # dp空间需要判断下是否等于0
+        if not s:
+            return 0
         dic = {}
         dp = [0 for i in range(len(s))]  # dp[j] 表示以 j 为结尾的 最长的不重复的字符串的长度
         for j in range(len(s)):
             i = dic.get(s[j], -1)  # 历史上最近的一次出现s[j]的索引
             dic[s[j]] = j  # 更新索引
-            if i < -1:
+            if i == -1:
                 # 没出现过
                 dp[j] = dp[j - 1] + 1  # 必然更长+1
             elif j - i > dp[j - 1]:
@@ -72,8 +75,8 @@ class Solution:
             else:
                 # s[i]在dp[j-1]中，等于dp[j]的序列是基于dp[j-1]的序列，被s[i]截断，长度等于j-1
                 dp[j] = j-i
-        # dp空间需要判断下是否等于0
-        return max(dp) if isinstance(dp,list) and dp else 0
+        # 返回全局最大
+        return max(dp)
 
 
 if __name__ == "__main__":
