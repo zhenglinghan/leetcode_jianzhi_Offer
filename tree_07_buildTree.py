@@ -77,6 +77,8 @@ def bin_tree_pre_order_traverse1(root):
     '''
     res = []
     s1 = []
+    if root == None:
+        return []
     s1.append(root)
     while s1:
         node = s1.pop()  # 对于s1中每个要被访问的跟节点
@@ -95,6 +97,8 @@ def bin_tree_in_order_traverse1(root):
     '''
     res = []
     s1 = []
+    if root == None:
+        return []
     node = root  # 根节点先不入栈 需要找到最左的节点
     while node or s1:
         if node:
@@ -114,6 +118,8 @@ def bin_tree_post_order_traverse1(root):
     '''
     s1 = []
     s2 = []
+    if root == None:
+        return []
     s1.append(root)
     res = []
     while s1:

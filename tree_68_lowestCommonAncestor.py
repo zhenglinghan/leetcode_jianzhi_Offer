@@ -27,17 +27,17 @@ pd.set_option('display.width', 5000)
 
 '''
 方法一：迭代
-循环搜索： 当节点 rootroot 为空时跳出；
-当 p, qp,q 都在 rootroot 的 右子树 中，则遍历至 root.rightroot.right ；
-否则，当 p, qp,q 都在 rootroot 的 左子树 中，则遍历至 root.leftroot.left ；
+循环搜索： 当节点 root 为空时跳出；
+当 p, q 都在 root 的 右子树 中，则遍历至 root.right ；
+否则，当 p, q 都在 root 的 左子树 中，则遍历至 root.left ；
 否则，说明找到了 最近公共祖先 ，跳出。
-返回值： 最近公共祖先 rootroot 。
+返回值： 最近公共祖先 root 。
 
 方法二：递归
 递推工作：
-当 p, qp,q 都在 rootroot 的 右子树 中，则开启递归 root.rightroot.right 并返回；
-否则，当 p, qp,q 都在 rootroot 的 左子树 中，则开启递归 root.leftroot.left 并返回；
-返回值： 最近公共祖先 rootroot 。
+当 p, q都在 root 的 右子树 中，则开启递归 root.right 并返回；
+否则，当 p, q 都在 root 的 左子树 中，则开启递归 root.left 并返回；
+返回值： 最近公共祖先 root 。
 '''
 
 
@@ -54,7 +54,8 @@ class Solution:
     '''
 
     def lowestCommonAncestor(self, root, p, q):
-        if p.val > q.val: p, q = q, p  # 保证 p.val < q.val # 优化条件判断
+        if p.val > q.val:
+            p, q = q, p  # 保证 p.val < q.val # 优化条件判断
         while root:
             if root.val < p.val:  # p,q 都在 root 的右子树中
                 root = root.right  # 遍历至右子节点

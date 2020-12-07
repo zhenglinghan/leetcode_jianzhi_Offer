@@ -76,19 +76,36 @@ class Codec:
                 res.append("null")
         return '[' + ','.join(res) + ']'
 
+    def serialize_self(self, root):
+        if not root:
+            return "[]"
+        queue = []
+        queue.append(root)
+        res = []
+        while queue:
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                if node:
+                    res.append(str(node.val))
+                    queue.append(node.left)
+                    queue.append(node.right)
+                else:
+                    res.append("Null")
+        return "[" + ",".join(res) + "]"
+
     def deserialize(self, data):
         if data == "[]":
             return
-        vals, i = data[1:-1].split(','), 1# 指针位i = 1
-        root = TreeNode(int(vals[0]))# 初始化根
+        vals, i = data[1:-1].split(','), 1  # 指针位i = 1
+        root = TreeNode(int(vals[0]))  # 初始化根
         queue = []
-        queue.append(root)# 下一层的根节点遍历生长！ 长出对应的值可能是node.val 可能是null
+        queue.append(root)  # 下一层的根节点遍历生长！ 长出对应的值可能是node.val 可能是null
         while queue:
             node = queue.pop(0)
             if vals[i] != "null":
                 node.left = TreeNode(int(vals[i]))
                 queue.append(node.left)
-            i += 1# 长过一个就+1 如果是null 就不长 也要加1
+            i += 1  # 长过一个就+1 如果是null 就不长 也要加1
             if vals[i] != "null":
                 node.right = TreeNode(int(vals[i]))
                 queue.append(node.right)
@@ -109,4 +126,6 @@ if __name__ == "__main__":
     root.right.right = TreeNode(5)
     codec = Codec()
     ans1 = codec.serialize(root)
-    ans2 = codec.serialize(root)
+    ans2 = codec.serialize_self(root)
+    print(ans1)
+    print(ans2)

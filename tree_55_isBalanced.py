@@ -32,18 +32,21 @@ class TreeNode:
         self.left = None
         self.right = None
 
-
+'''
+思路是对二叉树做后序遍历，从底至顶返回子树深度，若判定某子树不是平衡树则 “剪枝” ，直接向上返回
+'''
 class Solution:
     def isBalanced(self, root):
         def recur(root):
-            if not root:  # 出口
+            if not root:  # 出口 说明越过叶节点，因此返回高度 0
                 return 0  # 正常递归穿过叶子节点 作为递归到底部叶子节点 开始计算深度 从0开始 特例空树也在这里
             left = recur(root.left)
-            if left == -1:  # 出口
+            if left == -1:  # 出口 上次返回上来是-1 则一路-1 返回到顶 剪枝！
                 return -1
             right = recur(root.right)
-            if right == -1:  # 出口
+            if right == -1:  # 出口 上次返回上来是-1 则一路-1 返回到顶 剪枝！
                 return -1
+            # 定义子树深度为max(left, right) + 1 只要 满足条件就返回不然就剪枝 直接返回-1
             return max(left, right) + 1 if abs(left - right) <= 1 else -1
 
         return recur(root) != -1
